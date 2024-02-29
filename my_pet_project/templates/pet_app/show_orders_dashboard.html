@@ -1,0 +1,38 @@
+{% extends 'pet_app/dashboard.html' %}
+{% load static %}
+{% block header %}
+
+
+
+    <div class="col-12 d-grid justify-content-center">
+        {% for a in order_details %}
+        <div class="card mb-3 d-grid justify-content-center" style="max-width: 800px;">
+            
+            <div class="row g-0 " style="border: 1px solid #ff4135; ">
+                <div class="col-md-4 d-flex justify-content-center">
+                    <img src="/static/media/{{a.product_id.product_image}}" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h4 class="card-title">product name : {{ a.product_id.product_name }}</h4>
+                        <h5 class="card-title">ordered by user : {{a.user_id}}</h5>
+                        <h6 class="card-title">Total Price : {{a.order_amount}}</h6>
+                        <p class="card-title">quantity of ordered product : {{a.order_qty}}</p>
+
+                        
+                        <p class="card-text"><small class="text-muted">ordered date : {{a.ordered_date}}</small></p>
+                        <div class="d-grid " >
+                            <button class="btn btn-primary border-0" type="button" style="background-color: #ff4135; ">Confirm Order</button>
+                            
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            
+        </div>
+        {% endfor %}
+        
+    </div>
+
+{% endblock %}

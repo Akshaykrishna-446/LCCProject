@@ -1,3 +1,4 @@
+from email.policy import default
 from django.db import models
 
 # Create your models here.
@@ -28,29 +29,40 @@ class feedback(models.Model):
     feedback_date=models.DateField()
 
 class products(models.Model):
+    
     product_name=models.TextField(max_length=100)
     product_desc=models.TextField(max_length=300)
     product_image=models.ImageField()
     product_price=models.IntegerField()
+ 
+
+
+class wishlist(models.Model):
+    user_id=models.ForeignKey(user_reg,on_delete=models.CASCADE)
+    product_id=models.ForeignKey(products,on_delete=models.CASCADE,default=None)
+    
 
 class cart(models.Model):
 
     user_id=models.ForeignKey(user_reg,on_delete=models.CASCADE)
     product_id=models.ForeignKey(products,on_delete=models.CASCADE)
-
+    order_qty=models.IntegerField(null=True)
     cart_amount=models.IntegerField()
     
 class orders(models.Model):
     user_id=models.ForeignKey(user_reg,on_delete=models.CASCADE)
-    product_id=models.ForeignKey(products,on_delete=models.CASCADE)
-    order_amount=models.IntegerField()
-    ordered_date=models.DateField()
+    product_id=models.ForeignKey(products,on_delete=models.CASCADE,default=None)
+
+    order_amount=models.IntegerField(null=True)
+    order_qty=models.IntegerField(null=True)
+    ordered_date=models.DateField(null=True)
 
 
 class payment(models.Model):
     user_id=models.ForeignKey(user_reg,on_delete=models.CASCADE)
     amount=models.IntegerField()
     payment_date=models.DateField()
+
 
 
 # models of supplier.

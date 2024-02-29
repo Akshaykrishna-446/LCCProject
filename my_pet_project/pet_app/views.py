@@ -4,8 +4,15 @@ from datetime import date
 
 from django.http import HttpResponse
 # Create your views here.
-def home(request):
-    return render(request,'pet_app/home.html')
+
+
+def index(request):
+    data=products.objects.all()
+    return render(request,'pet_app/index.html',{"data":data})
+
+def forgot_password(request):
+    return render(request,'pet_app/forgot_password.html')
+
 
 def register(request):
     if request.POST:
@@ -28,17 +35,68 @@ def login1(request):
     return render(request,'pet_app/login.html')
 def dashboard(request):
     return render(request,'pet_app/dashboard.html')
+def checkout(request):
+    return render(request,'pet_app/checkout.html')
+def contact_us(request):
+    return render(request,'pet_app/contact_us.html')
 
-def test(request):
-    return render(request,'pet_app/test.html')
+
+def show_product_dashboard(request):
+    data=products.objects.all()
+    return render(request,'pet_app/show_product_dashboard.html',{"data":data})
+
+def show_orders_dashboard(request):
+    order_details=orders.objects.all()
+    
+    context={
+        "order_details":order_details,
+        
+    }
+    return render(request,'pet_app/show_orders_dashboard.html',context)
 
 def cart1(request):
+    cart_products=cart.objects.all()
+    
+    context={
+        "cart_products":cart_products,
+        
+        }
+    return render(request,'pet_app/cart.html',context)
+
+def cartremove(request,id):
+    
+    
+    remove=cart.objects.get(id=id)
+        
+    remove.delete()
+
     
     return render(request,'pet_app/cart.html')
 
-def all_products(request):
+
+
+
+def shop(request):
     data=products.objects.all()
-    return render(request,'pet_app/all_products.html',{"data":data})
+    if request.method == "POST":
+        
+        query_name = request.POST.get('name', None)
+        
+        results = products.objects.filter(name__contains=query_name)
+
+        return render(request, 'pet_app/shop.html', {"results":results})
+    
+    return render(request,'pet_app/shop.html',{"data":data})
+
+
+        
+    
+        
+    
+
+def wishlist1(request):
+    wishlisted=wishlist.objects.all()
+    return render(request,'pet_app/wishlist.html',{"wishlisted":wishlisted})
 
 def add_products(request):
     if request.POST:
@@ -53,6 +111,8 @@ def add_products(request):
                                     product_price=products_product_p,
                                     product_image=products_product_img)
         obj.save()
+    
+    
     return render(request,'pet_app/add_products.html')
 
 def product_details(request,id):
@@ -68,21 +128,41 @@ def product_details(request,id):
         user=user_reg.objects.get(id=u_id)
         obj=cart.objects.create(product_id=product,
                                 user_id=user,
-                                cart_amount=amt)
+                                cart_amount=amt,
+                                order_qty=qty)
         obj.save()
 
     if 'buyNow' in request.POST:
         
         qty=request.POST['qty']
         amt=product.product_price
+        
         amt=int(amt)*int(qty)
         u_id=1
         current_date=date.today()
+        
+        
         user=user_reg.objects.get(id=u_id)
         obj=orders.objects.create(product_id=product,
                                 user_id=user,
                                 order_amount=amt,
-                                ordered_date=current_date)
+                                ordered_date=current_date,
+                                
+                                order_qty=qty
+                                )
         obj.save()
+
+    if 'wishlist' in request.POST:
+        u_id=1
+        user=user_reg.objects.get(id=u_id)
+        obj=wishlist.objects.create(product_id=product,
+                                    user_id=user
+                                    )
+        obj.save()
+
+    
         
     return render(request,'pet_app/product_details.html',context)
+    
+
+

@@ -1,0 +1,488 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="utf-8">
+    <title>Fish Hut</title>
+
+
+
+    <link rel="icon" type="image/png" href="{% static 'images/indexPageImages/title_logo-removebg-preview.png' %}" />
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="{% static 'css/user_reg.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Main Stylesheet -->
+    <link href="{% static 'css/indexPageCss/style.css' %}" rel="stylesheet">
+
+
+
+
+</head>
+
+<body>
+
+    <!-- preloader start -->
+    <div class="preloader">
+        <img src="//shopper-theme.myshopify.com/cdn/shop/t/3/assets/preloader.gif?v=137961839149572988781540278302"
+            alt="preloader">
+    </div>
+    <!-- preloader end -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" id="navbar">
+        <a class="navbar-brand order-2 order-lg-1  site-header__logo-image" href="/">
+
+            <img style="height: 50px;" src="{% static 'images/indexPageImages/logo_wide.png' %}" alt="" srcset="">
+
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse order-1 order-lg-2" id="navbarSupportedContent">
+            <ul class="navbar-nav mx-auto">
+
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+
+
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'shop' %}">Shop</a>
+                </li>
+
+
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/pages/about-us">About</a>
+                </li>
+
+
+
+
+
+
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/pages/contact-us">Contact Us</a>
+                </li>
+
+
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#swym-wishlist">Wishlist <i class="bi bi-heart"></i></a>
+                </li>
+
+
+
+
+
+            </ul>
+        </div>
+        <div class="order-3 navbar-right-elements">
+            <div class="search-cart">
+                <!-- search -->
+                <div class="search">
+                    <button id="searchOpen" class="search-btn"><svg xmlns="http://www.w3.org/2000/svg" width="16"
+                            height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                            <path
+                                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+                        </svg></button>
+                    <div class="search-wrapper">
+                        <form action="/search" method="get">
+                            <input class="search-box" id="Search" name="q" type="search"
+                                placeholder="Search on our store">
+                            <button class="search-icon" type="submit"><i class="bi bi-search"></i></button>
+                        </form>
+                    </div>
+                </div>
+                <!-- cart -->
+                <a href="{% url 'cart' %}"></a>
+                <div class="cart" id="cart">
+                    <button id="cartOpen" class="cart-btn"><svg xmlns="http://www.w3.org/2000/svg" width="16"
+                            height="16" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
+                            <path
+                                d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
+                        </svg> CART </button>
+
+                </div></a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="main-wrapper">
+
+        <!-- breadcrumb -->
+        <nav class="bg-gray py-3">
+            <div class="container">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Checkout</li>
+                </ol>
+            </div>
+        </nav>
+        <!-- /breadcrumb -->
+
+        <div class="section" style="padding-top: 0%;">
+            <div class="checkout shopping">
+                <div class="container" style="padding-left: 70px;padding-right: 70px; ">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="block billing-details">
+                                <h4 class="widget-title">Billing Details</h4>
+                                <form class="checkout-form">
+                                    <div class="form-group">
+                                        <label for="full_name">Full Name</label>
+                                        <input type="text" class="form-control" id="full_name" placeholder="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="user_address">Address</label>
+                                        <input type="text" class="form-control" id="user_address" placeholder="">
+                                    </div>
+                                    <div class="checkout-country-code clearfix">
+                                        <div class="form-group">
+                                            <label for="user_post_code">Zip Code</label>
+                                            <input type="text" class="form-control" id="user_post_code" name="zipcode"
+                                                value="">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="user_city">City</label>
+                                            <input type="text" class="form-control" id="user_city" name="city" value="">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="user_country">Country</label>
+                                        <input type="text" class="form-control" id="user_country" placeholder="">
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- payment details -->
+                            <div class="payment">
+                                <p class="text"><i class="bi bi-arrow-right-short"></i> Payment Method </p>
+                                <div style="margin-left: 35px;">
+                                    <div class="ms-3">
+                                        <input class="form-check-input" type="radio" name="radioNoLabel"
+                                            onclick="show()" id="radioNoLabel1" value="" aria-label="...">
+
+                                        <img src="https://static-assets-web.flixcart.com/fk-p-linchpin-web/batman-returns/logos/UPI.gif"
+                                            class="rounded" style="width: 30px; height: 30px;">
+                                        <span> UPI</span>
+
+                                        <div class="ms-4" style="display: none;" id="data">
+                                            <p>enter your UPI ID</p>
+                                            <div class="form-floating mb-3 me-4">
+                                                <input type="text" class="form-control " id="floatingInput"
+                                                    placeholder="UPI ID HERE">
+                                                <label style="font-size: x-small; " for="floatingInput">UPI ID
+                                                    HERE</label>
+                                                <a href="">verify your UPI ID</a>
+                                            </div>
+
+
+
+
+                                            <div class="d-grid mt-3 me-4">
+                                                <a class="btn btn-primary text-white" style="width: 100%; "
+                                                    type="button">Place
+                                                    Order </a>
+
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+
+
+                                    <div class="ms-3 mb-3">
+                                        <div class="mt-2">
+                                            <input class="form-check-input" type="radio" name="radioNoLabel"
+                                                id="radioNoLabel1" onclick="see()" value="" aria-label="...">
+                                            <span>Credit / Debit / ATM Card</span>
+                                        </div>
+                                        <div class="checkout-product-details" style="display: none;" id="payment">
+                                            <div class="payment">
+                                                <div class="card-details">
+                                                    <form class="checkout-form">
+                                                        <div class="form-group">
+                                                            <label for="card-number">Card Number <span
+                                                                    class="required">*</span></label>
+                                                            <input id="card-number" class="form-control" type="tel"
+                                                                placeholder="•••• •••• •••• ••••">
+                                                        </div>
+                                                        <div class="form-group half-width padding-right">
+                                                            <label for="card-expiry">Expiry (MM/YY) <span
+                                                                    class="required">*</span></label>
+                                                            <input id="card-expiry" class="form-control" type="tel"
+                                                                placeholder="MM / YY">
+                                                        </div>
+                                                        <div class="form-group half-width padding-left">
+                                                            <label for="card-cvc">Card Code <span
+                                                                    class="required">*</span></label>
+                                                            <input id="card-cvc" class="form-control" type="tel"
+                                                                maxlength="4" placeholder="CVC">
+                                                        </div>
+                                                        <a href="confirmation.html" class="btn btn-primary mt-3"
+                                                            style="width: 100%;">Place
+                                                            Order</a>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+
+                                    </div>
+
+                                    <div class="ms-3">
+                                        <input class="form-check-input" type="radio" name="radioNoLabel"
+                                            id="radioNoLabel1" value="" aria-label="..." onclick="cod()">
+
+
+                                        <span> Cash On Delivery</span>
+
+                                        <div class="ms-4" style="display: none;" id="data1">
+                                            <p class="mt-2"><i class="bi bi-box-seam-fill"></i> You Selected Cash ON
+                                                DElivery For YOur Order...</p>
+                                            <a href="confirmation.html" class="btn btn-primary mt-3"
+                                                style="width: 100%;">Place
+                                                Order</a>
+                                        </div>
+
+
+                                    </div>
+
+
+
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="col-md-4">
+                            <div class="product-checkout-details">
+                                <div class="block">
+                                    <h4 class="widget-title">Order Summary</h4>
+                                    <div class="media product-card">
+                                        <a class="pull-left" href="product-single.html">
+                                            <img class="media-object" src="images/cart/product-1.jpg" alt="Image" />
+                                        </a>
+                                        <div class="media-body">
+                                            <h4 class="media-heading"><a class="text-color"
+                                                    href="product-single.html">Ambassador Heritage 1921</a></h4>
+                                            <p class="price">1 x $249</p>
+                                            <span class="remove">Remove</span>
+                                        </div>
+                                    </div>
+                                    <div class="discount-code">
+                                        <p>Have a discount ? <a data-toggle="modal" data-target="#coupon-modal"
+                                                href="">enter it here</a></p>
+                                    </div>
+                                    <ul class="summary-prices">
+                                        <li>
+                                            <span>Subtotal:</span>
+                                            <span class="price">$190</span>
+                                        </li>
+                                        <li>
+                                            <span>Shipping:</span>
+                                            <span>Free</span>
+                                        </li>
+                                    </ul>
+                                    <div class="summary-total">
+                                        <span>Total</span>
+                                        <span>$250</span>
+                                    </div>
+                                    <div class="verified-icon">
+                                        <img src="images/verified.png">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="coupon-modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <form class="text-center">
+                            <div class="form-group">
+                                <input class="form-control text-center" type="text" placeholder="Enter Coupon Code">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Apply Coupon</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- footer -->
+        <footer class="section bg-light">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3 col-sm-6 text-center text-sm-left">
+                        <h3 class="mb-4 text-primary">Our Policies</h3>
+                        <ul class="pl-0">
+
+                            <li class="mb-2">
+                                <a class="text-color" href="#">Privacy Policy</a>
+                            </li>
+
+                            <li class="mb-2">
+                                <a class="text-color" href="#">Terms & Conditions</a>
+                            </li>
+
+                            <li class="mb-2">
+                                <a class="text-color" href="#">Cookie Policy</a>
+                            </li>
+
+                            <li class="mb-2">
+                                <a class="text-color" href="#">Terms of Sale</a>
+                            </li>
+
+                            <li class="mb-2">
+                                <a class="text-color" href="#">Free Shipping & Returns</a>
+                            </li>
+
+                            <li class="mb-2">
+                                <a class="text-color" href="/pages/faqs">FAQs</a>
+                            </li>
+
+                        </ul>
+                    </div>
+
+                    <div class="col-md-3 col-sm-6 mb-5 mb-md-0 text-center text-sm-left">
+                        <h3 class="mb-4 text-primary">Useful Link</h3>
+                        <ul class="pl-0">
+
+                            <li class="mb-2">
+                                <a class="text-color" href="#">Privacy Policy</a>
+                            </li>
+
+                            <li class="mb-2">
+                                <a class="text-color" href="#">Terms & Conditions</a>
+                            </li>
+
+                            <li class="mb-2">
+                                <a class="text-color" href="#">Cookie Policy</a>
+                            </li>
+
+                            <li class="mb-2">
+                                <a class="text-color" href="#">Terms of Sale</a>
+                            </li>
+
+                            <li class="mb-2">
+                                <a class="text-color" href="#">Free Shipping & Returns</a>
+                            </li>
+
+                            <li class="mb-2">
+                                <a class="text-color" href="/pages/faqs">FAQs</a>
+                            </li>
+
+                        </ul>
+                    </div>
+
+                    <div class="col-md-3 col-sm-6 mb-5 mb-md-0 text-center text-sm-left">
+                        <h3 class="mb-4 text-primary">Contact</h3>
+
+                        <p>20464 Hirthe Curve Suite, Emardton, CT 12471-4107</p>
+
+
+                        <p>+5(305) 785-0437</p>
+
+
+                        <p>info@example.com</p>
+
+
+                    </div>
+
+                    <div class="col-md-3 col-sm-6 mb-5 mb-md-0 text-center text-sm-left">
+                        <h3 class="mb-4 text-primary">SocialMedia</h3>
+
+
+
+                        <ul class="list-inline social-icons">
+
+                            <li class="list-inline-item">
+                                <a href="https://facebook.com/shopify"><i class="bi bi-facebook"></i></a>
+                            </li>
+
+
+                            <li class="list-inline-item">
+                                <a href="https://twitter.com/shopify"><i class="bi bi-twitter"></i></a>
+                            </li>
+
+
+                            <li class="list-inline-item">
+                                <a href="https://pinterest.com/shopify"><i class="bi bi-pinterest"></i></a>
+                            </li>
+
+
+                            <li class="list-inline-item">
+                                <a href="https://instagram.com/shopify"><i class="bi bi-instagram"></i></a>
+                            </li>
+
+                        </ul>
+                    </div>
+
+
+
+
+
+
+
+
+
+
+                </div>
+            </div>
+        </footer>
+        <!-- /footer -->
+
+    </div>
+
+    <script>
+        function show() {
+            var x = document.getElementById("data");
+            if (x.style.display !== "block") {
+                x.style.display = "block";
+            } else {
+                x.style.display = "none";
+            }
+        }
+        function see() {
+            var x = document.getElementById("payment");
+            if (x.style.display !== "block") {
+                x.style.display = "block";
+            } else {
+                x.style.display = "none";
+            }
+            document.getElementById('payment').style.display = 'block';
+
+        }
+        function cod() {
+            var x = document.getElementById("data1");
+            if (x.style.display !== "block") {
+                x.style.display = "block";
+            } else {
+                x.style.display = "none";
+            }
+            document.getElementById('data1').style.display = 'block';
+
+        }
+    </script>
+    <!-- /main wrapper -->
+
+    <!-- jQuery -->
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+
+    <script src="{% static 'js/indexPage/script.js' %}"></script>
+</body>
+
+</html>
+<!-- end document-->

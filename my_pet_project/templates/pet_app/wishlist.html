@@ -1,0 +1,164 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <link href="{% static 'css/indexPageCss/theme.scss.css' %}" rel="stylesheet" type="text/css" media="all" />
+
+    <link rel="stylesheet" href="{% static 'css/indexPageCss/pluggins.css' %}" type="text/css" media="all">
+    <link rel="stylesheet" href="{% static 'css/indexPageCss/style.css' %}">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" id="navbar">
+        <a class="navbar-brand order-2 order-lg-1  site-header__logo-image" href="/">
+
+            <img style="height: 50px;" src="{% static 'images/indexPageImages/logo_wide.png' %}" alt="" srcset="">
+
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse order-1 order-lg-2" id="navbarSupportedContent">
+            <ul class="navbar-nav mx-auto">
+
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+
+
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'shop' %}">Shop</a>
+                </li>
+
+
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/pages/about-us">About</a>
+                </li>
+
+
+
+
+
+
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/pages/contact-us">Contact Us</a>
+                </li>
+
+
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#swym-wishlist">Wishlist <i class="bi bi-heart"></i></a>
+                </li>
+
+
+
+
+
+            </ul>
+        </div>
+        <div class="order-3 navbar-right-elements">
+            <div class="search-cart">
+                <!-- search -->
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#swym-wishlist">Sign Out </a>
+                    </li>
+                    <!-- cart -->
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="main-wrapper">
+
+        <!-- breadcrumb -->
+        <nav class="bg-gray py-3">
+            <div class="container">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">wishlist</li>
+                </ol>
+            </div>
+        </nav>
+        <!-- /breadcrumb -->
+        <div class="section">
+
+            <div class="cart shopping">
+
+
+                <div class="container">
+
+                    <div class="row">
+                        <div class="col-md-10 mx-auto">
+                            <div class="block">
+                                <div class="product-list">
+                                    <form method="#">
+                                        <div class="table-responsive">
+                                            <table  class="table cart-table">
+                                                <thead>
+
+                                                </thead>
+                                                {% for d in wishlisted %}
+                                                <tbody >
+                                                    
+
+                                                    <tr style="border-bottom: 1px solid #ff3541;" >
+                                                        <td style="width: 50px;">
+                                                            <a class="product-remove" href=""><i class="bi bi-x-circle text-primary"></i></a>
+                                                        </td>
+                                                        <td style="width: 100px;">
+                                                         
+                                                                <div class="product-info "
+                                                                    style="max-width: 100px; ">
+                                                                    <img class="img-fluid" style="float: left;"
+                                                                        src="/static/media/{{d.product_id.product_image}}"
+                                                                        alt="product-img" />
+                                                                        
+
+                                                                </div>
+                                                            
+
+                                                        </td>
+                                                        <td >
+                                                            <a href="">{{d.product_id.product_name}}</a>
+                                                            <h6>{{d.product_id.product_price}}</h6>
+                                                            
+                                                        </td>
+                                                        
+                                                        <td style="width: 10px;"><a class="btn" href="">add to cart</a></td>
+                                                        <td style="width: 10px;"><a class="btn" href="">Buy Now</a></td>
+                                                    </tr>
+                                                    
+
+                                                </tbody>
+                                                {% endfor %}
+                                            </table>
+                                        </div>
+                                        <hr>
+
+
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+</body>
+
+</html>
