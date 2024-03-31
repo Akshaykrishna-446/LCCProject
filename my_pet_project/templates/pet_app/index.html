@@ -21,41 +21,42 @@
 
 
 
-    
 
 
-    
+
+
 
 
     <link href="{% static 'css/indexPageCss/theme.scss.css' %}" rel="stylesheet" type="text/css" media="all" />
 
     <link rel="stylesheet" href="{% static 'css/indexPageCss/pluggins.css' %}" type="text/css" media="all">
     <link rel="stylesheet" href="{% static 'css/indexPageCss/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/pro_drop.css' %}">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 
-    
 
-    
+
+
 
     <script async="async" src="{% static 'js/indexPage/preloader.js' %}"></script>
-    
 
 
-    
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
+
+
 
     <script src="{% static 'js/indexPage/load_feature.js' %}"
         integrity="sha256-h4dvokWvGcvRSqiG7VnGqoonxF0k3NeoHPLSMjUGIz4=" data-source-attribution="shopify.loadfeatures"
         defer="defer" crossorigin="anonymous"></script>
 
-    
+
 
     <script src="{% static 'js/indexPage/features.js' %}"
         integrity="sha256-HAs5a9TQVLlKuuHrahvWuke+s1UlxXohfHeoYv8G2D8="
@@ -63,22 +64,22 @@
     <script src="{% static 'js/indexPage/scripts.js' %}" id="sections-script" data-sections="slideshow"
         defer="defer"></script>
 
-    
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
+
 </head>
 
 <body id="elite-shop" class="template-index">
 
-    <a class="in-page-link visually-hidden skip-link" href="#MainContent">Skip to content</a>
+    
 
 
     <div class="preloader">
-        <img src="//shopper-theme.myshopify.com/cdn/shop/t/3/assets/preloader.gif?v=137961839149572988781540278302"
+        <img src="{% static 'images/indexPageImages/preloader.gif' %}"
             alt="preloader">
     </div>
 
@@ -89,89 +90,16 @@
 
             }
         </style>
+        
+
         <div data-section-id="header" data-section-type="header-section">
+            {% block navbar %}
 
 
-
-            <!-- navigation -->
-            <nav class="navbar navbar-expand-lg navbar-light bg-light" id="navbar">
-                <a class="navbar-brand order-2 order-lg-1  site-header__logo-image" href="/">
-
-                    <img style="height: 50px;" src="{% static 'images/indexPageImages/logo_wide.png' %}" alt=""
-                        srcset="">
-
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse"
-                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse order-1 order-lg-2" id="navbarSupportedContent">
-                    <ul class="navbar-nav mx-auto">
-
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="">Home</a>
-                        </li>
-
-
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'shop' %}">Shop</a>
-                        </li>
-
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'contact_us' %}">Contact Us</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'wishlist' %}">Wishlist <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary text-white">
-                                9
-                                <span class="visually-hidden">unread messages</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-primary" href="{% url 'register' %}"> Sign UP</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-primary" href="{% url 'login1' %}"> Login </a>
-                        </li>
-
-
-
-
-
-                    </ul>
-                </div>
-                <div class="order-3 navbar-right-elements">
-                    <div class="search-cart">
-                        <!-- search -->
-                        <div class="search">
-                            <button id="searchOpen" class="search-btn"><svg xmlns="http://www.w3.org/2000/svg"
-                                    width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                                    <path
-                                        d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
-                                </svg></button>
-                            <div class="search-wrapper">
-                                <form action="/search" method="get">
-                                    <input class="search-box" id="Search" name="q" type="search"
-                                        placeholder="Search on our store">
-                                    <button class="search-icon" type="submit"><i class="bi bi-search"></i></button>
-                                </form>
-                            </div>
-                        </div>
-                        <!-- cart -->
-                        <div class="cart" id="cart">
-                            <button id="cartOpen" class="cart-btn"><svg xmlns="http://www.w3.org/2000/svg" width="16"
-                                    height="16" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
-                                    <path
-                                        d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
-                                </svg><a href="{% url 'cart' %}"> CART</a> </button>
-
-                        </div>
-                    </div>
-                </div>
-            </nav>
+            {% include 'pet_app/navbar.html' %}
+            
+            
+            {% endblock %}
             <!-- /navigation -->
         </div>
 
@@ -186,6 +114,7 @@
                     <div class="hero-slider " style="padding-left: 70px; padding-right: 70px;">
 
                         <!-- Start first slide  -->
+                        {% for product in featured_product %}
                         <div class="slider-item slide--1558413874210" data-index="0">
                             <div class="row">
                                 <div class="col-lg-6 align-self-center text-center text-md-left mb-4 mb-lg-0">
@@ -194,36 +123,36 @@
 
 
 
-                                        <h1>Betta</h1>
+                                        <h1>{{product.product_name}}</h1>
 
 
-                                        <h3>only @ $59.00</h3>
+                                        <h3>only @ {{product.product_price}}</h3>
 
 
-                                        <p class="mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit sed do
-                                            eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                        <p class="mb-4">{{product.product_desc}}</p>
 
                                     </div>
 
-                                    <a href="" class="btn btn-primary" data-duration-in=".3" data-animation-in="zoomIn"
+                                    <a href="{% url 'product_details' product.id %}" class="btn btn-primary" data-duration-in=".3" data-animation-in="zoomIn"
                                         data-delay-in=".3">Buy now</a>
 
                                 </div>
                                 <div class="col-lg-6 text-center text-md-left">
                                     <div class="bg-letter">
-                                        <!-- background letter -->
+                                        
 
 
 
 
                                         <img class="img-fluid d-unset up-down" style="scale: 1.2; margin-top: 50px;"
-                                            src="{% static 'images/71d9c7365e77dd5cfbf876c4ef4e0b7a-removebg-preview.png' %}">
+                                            src="/static/media/{{product.product_image}}">
 
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="slider-item slide--1558413874210" data-index="0">
+                        {% endfor %}
+                        <!-- <div class="slider-item slide--1558413874210" data-index="0">
                             <div class="row">
                                 <div class="col-lg-6 align-self-center text-center text-md-left mb-4 mb-lg-0">
                                     <div data-duration-in=".3" data-animation-in="slideInUp">
@@ -248,10 +177,9 @@
                                 </div>
                                 <div class="col-lg-6 text-center text-md-left">
                                     <div class="bg-letter">
-                                        <!-- background letter -->
+                                        
 
-                                        <span class="text-primary" data-duration-in=".5"
-                                            data-animation-in="bounceInRight" data-delay-in=".5">G</span>
+                                        
 
 
                                         <img class="img-fluid d-unset up-down"
@@ -260,11 +188,11 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <!-- end slider item -->
+                        </div> -->
+                        
 
-                        <!-- Start first slide  -->
-                        <div class="slider-item slide--1558414194883" data-index="1">
+                        
+                        <!-- <div class="slider-item slide--1558414194883" data-index="1">
                             <div class="row">
                                 <div class="col-lg-6 align-self-center text-center text-md-left mb-4 mb-lg-0">
                                     <div data-duration-in=".3" data-animation-in="slideInUp">
@@ -289,7 +217,7 @@
                                 </div>
                                 <div class="col-lg-6 text-center text-md-left">
                                     <div class="bg-letter">
-                                        <!-- background letter -->
+                                        
 
 
 
@@ -301,8 +229,8 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <!-- end slider item -->
+                        </div> -->
+                        
 
                     </div>
                 </div>
@@ -320,138 +248,51 @@
                 <div class="container">
                     <div class="row justify-content-center">
                         <div class="col-lg-12 text-center">
-                            <h2 class="section-title">Top Rated Products</h2>
+                            <h2 class="section-title">Featured Products</h2>
                         </div>
 
                         <!-- categories item -->
+                        {% for product in featured_product %}
                         <div class="col-lg-4 col-md-6 mb-50">
+
                             <div class="card p-0">
 
 
                                 <div class="border-bottom text-center hover-zoom-img">
-                                    <a href="/products/folded-vase-glasse"><img
-                                            src="//shopper-theme.myshopify.com/cdn/shop/products/18_1920x.jpg?v=1540633494"
+                                    <a href="{% url 'product_details' product.id %}"><img style="height: 260px;"
+                                            src="/static/media/{{product.product_image}}"
                                             class="rounded-top img-fluid w-100"></a>
                                 </div>
                                 <div class="product-info text-center  p-4">
                                     <h3 class="h5">
-                                        <a class="text-color" href="/products/folded-vase-glasse">Folded Vase Glasse</a>
+                                        <a class="text-color" href="">{{ product.product_name }}</a>
                                     </h3>
-                                    <h4 class="h5">description
+                                    <h4 class="h5">{{ product.product_desc }}
                                     </h4>
-                                    <span class="h5">$199.99
+                                    <span class="h5">&#x20b9;{{product.product_price}}
                                     </span>
 
-                                    <div class="mt-2">
-                                        <button type="submit" name="add" class="btn btn-primary btn-sm text-white"
-                                            data-add-to-cart>
-                                            <span data-add-to-cart-text>
-
-                                                Add to Cart
-
-                                            </span>
-                                        </button>
-                                        <button type="submit" style="width: 125px;" name="add"
-                                            class="btn btn-primary btn-sm text-white" data-add-to-cart>
-                                            <span data-add-to-cart-text>
+                                    <div class="mt-1">
+                                        
+                                        <a href="{% url 'BuyNow' product.id %}" style="width: 125px;" name="add"
+                                            class="btn btn-primary btn-sm text-white" >
+                                            <span>
 
                                                 Buy Now
 
                                             </span>
-                                        </button>
+                                        </a>
                                     </div>
                                 </div>
 
 
                             </div>
+
                         </div>
+                        {% endfor %}
 
                         <!-- categories item -->
-                        <div class="col-lg-4 col-md-6 mb-50">
-                            <div class="card p-0">
 
-
-                                <div class="border-bottom text-center hover-zoom-img">
-                                    <a href="/products/denim-rucksack"><img
-                                            src="//shopper-theme.myshopify.com/cdn/shop/products/11-600x600_1920x.jpg?v=1540618235"
-                                            class="rounded-top img-fluid w-100"></a>
-                                </div>
-                                <div class="product-info text-center  p-4">
-                                    <h3 class="h5">
-                                        <a class="text-color" href="/products/folded-vase-glasse">Folded Vase Glasse</a>
-                                    </h3>
-                                    <h4 class="h5">description
-                                    </h4>
-                                    <span class="h5">$199.99
-                                    </span>
-
-                                    <div class="mt-2">
-                                        <button type="submit" name="add" class="btn btn-primary btn-sm text-white"
-                                            data-add-to-cart>
-                                            <span data-add-to-cart-text>
-
-                                                Add to Cart
-
-                                            </span>
-                                        </button>
-                                        <button type="submit" style="width: 125px;" name="add"
-                                            class="btn btn-primary btn-sm text-white" data-add-to-cart>
-                                            <span data-add-to-cart-text>
-
-                                                Buy Now
-
-                                            </span>
-                                        </button>
-                                    </div>
-                                </div>
-
-
-                            </div>
-                        </div>
-
-
-                        <!-- categories item -->
-                        <div class="col-lg-4 col-md-6 mb-50">
-                            <div class="card p-0">
-
-
-                                <div class="border-bottom text-center hover-zoom-img">
-                                    <a href="/products/shirt"><img
-                                            src="//shopper-theme.myshopify.com/cdn/shop/products/31_aee9ba4a-5ddc-4c58-ac6d-fdc590ee174c_1920x.jpg?v=1558761951"
-                                            class="rounded-top img-fluid w-100"></a>
-                                </div>
-
-
-                                <div class="product-info text-center p-4">
-                                    <h3 class="h5 ">
-                                        <a class="text-color" href="/products/folded-vase-glasse">Folded Vase Glasse</a>
-                                    </h3>
-                                    <h4 class="h5">description
-                                    </h4>
-                                    <span class="h5">$199.99
-                                    </span>
-
-                                    <div class="">
-                                        <button type="submit" name="add" class="btn btn-primary btn-sm text-white"
-                                            data-add-to-cart>
-                                            <span data-add-to-cart-text>
-
-                                                Add to Cart
-
-                                            </span>
-                                        </button>
-                                        <button type="submit" style="width: 125px;" name="add"
-                                            class="btn btn-primary btn-sm text-white" data-add-to-cart>
-                                            <span data-add-to-cart-text>
-
-                                                Buy Now
-
-                                            </span>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
 
                     </div>
                 </div>
@@ -476,7 +317,7 @@
                                 <p class="text-white mt-3 mb-4">____Checkout Our New LOving Aquarium Fishes____</p>
 
 
-                                <a href="/collections" class="btn btn-light">Explore Shop..</a>
+                                <a href="{% url 'shop' %}" class="btn btn-light">Explore Shop..</a>
 
                         </div>
                     </div>
@@ -495,83 +336,66 @@
                     <div class="row">
 
                         <div class="col-lg-12 text-center">
-                            <h2 class="section-title">New Products</h2>
+                            <h2 class="section-title">Latest Products</h2>
                         </div>
 
-                        <div class="col-12">
-
-                            <div class="collection-slider">
-
-                                <!-- product -->
-
-                                <!-- /end of product -->
-
-                                <!-- product -->
-
-                                <!-- /end of product -->
-
-                                <!-- product -->
-
-                                <!-- /end of product -->
-
-                                <!-- product -->
-
-                                <!-- /end of product -->
-
-                                <!-- product -->
-                                {% for d in data %}
-                                <div class="col-lg-4 col-sm-6">
-                                    <div class="product text-center">
-                                        <div class="product-thumb">
-                                            <div class="overflow-hidden position-relative">
-                                                <a href="/products/pocket-denim-overshirt">
-
-                                                    <img class="img-fluid w-100 mb-3 img-first"
-                                                        src="/static/media/{{d.product_image}}"
-                                                        alt="Pocket Denim Overshirt">
 
 
+
+
+
+
+                        <!-- product -->
+                        {% for d in latest_product %}
+                        <div class="col-lg-4 col-sm-6">
+                            <div class="product text-center">
+                                <div class="product-thumb">
+                                    <div class="overflow-hidden position-relative">
+                                        <a href="{% url 'product_details' d.id %}">
+
+                                            <img class="img-fluid w-100 mb-3 img-first"
+                                                src="/static/media/{{d.product_image}}" alt="Pocket Denim Overshirt">
+
+
+                                        </a>
+                                        <div class="btn-cart">
+                                            
+                                                <a  href="{% url 'addtoCart' d.id %}"
+                                                    class="btn btn-primary btn-sm text-white" data-add-to-cart>
+                                                    <span data-add-to-cart-text>
+
+                                                        Add to Cart
+
+                                                    </span>
                                                 </a>
-                                                <div class="btn-cart">
-                                                    <form method="post" action="/cart/add"
-                                                        id="product_form_1778436636770" accept-charset="UTF-8"
-                                                        enctype="multipart/form-data" data-cart-submit><input
-                                                            type="hidden" id="product" name="id" value="16676079730786">
-                                                        <button type="submit" name="add"
-                                                            class="btn btn-primary btn-sm text-white" data-add-to-cart>
-                                                            <span data-add-to-cart-text>
-
-                                                                Add to Cart
-
-                                                            </span>
-                                                        </button>
-                                                    </form>
-                                                </div>
-                                            </div>
-
+                                            
                                         </div>
-                                        <div class="product-info">
-                                            <h3 class="h5"><a class="text-color"
-                                                    href="/products/pocket-denim-overshirt">{{d.product_name}}</a>
-                                            </h3>
-                                            <h4 class="h5">{{d.product_desc}}
-                                            </h4>
-                                            <span class="h5">${{d.product_price}}
-                                            </span>
-                                        </div>
-                                        <!-- product label badge -->
-
                                     </div>
+
                                 </div>
-                                {% endfor %}
-                                <!-- /end of product -->
-
-                                <!-- product -->
-
-                                <!-- /end of product -->
+                                <div class="product-info">
+                                    <h3 class="h5"><a class="text-color"
+                                            href="/products/pocket-denim-overshirt">{{d.product_name}}</a>
+                                    </h3>
+                                    <h4 class="h5">{{d.product_desc}}
+                                    </h4>
+                                    <span class="h5">&#x20b9;{{d.product_price}}
+                                    </span>
+                                    
+                                </div>
+                                <!-- product label badge -->
 
                             </div>
                         </div>
+                        {% endfor %}
+                        <!-- /end of product -->
+
+                        <!-- product -->
+
+                        <!-- /end of product -->
+
+
+
                     </div>
                 </div>
             </section>
@@ -584,22 +408,20 @@
                     <div class="row">
                         <div class="col-md-6 text-center text-md-left mb-4 mb-md-0">
 
-                            <h1>Deal of the day</h1>
+                            <h1>THERE'S LOT MORE OFFERS ON OUR STORE... </h1>
 
 
-                            <h4 class="mb-40">Get at discounted price!</h4>
+                            <h4 class="mb-40">your cart is waiting for your order</h4>
 
-                            <!-- syo-timer -->
-                            <div class="syotimer large">
-                                <div id="simple-timer" data-year="2019" data-month="9" data-hour="1"></div>
-                            </div>
+                            
+                            
 
-                            <a href="/products/brown-floral-sneaker" class="btn btn-primary">shop now</a>
+                            <a href="{% url 'shop' %}" class="btn btn-primary">Explore now</a>
 
                         </div>
                         <div class="col-md-6 text-center text-md-left align-self-center">
 
-                            <img src="{% static 'images/indexPageImages/siam-betta-fish-removebg-preview.png' %}"
+                            <img style="height: 400px; width: 400px;" src="{% static 'images/betta fish.png' %}"
                                 alt="product-img" class="img-fluid up-down">
 
                         </div>
@@ -819,14 +641,14 @@
 
 
 
-    
+
 
 
     <!-- 3 different -->
-    
 
-    
-    
+
+
+
 
 
 </body>

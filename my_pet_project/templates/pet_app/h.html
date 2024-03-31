@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Review Form</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+    }
+
+    #reviewForm {
+        display: none;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    select, textarea {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+
+    button {
+        padding: 10px 20px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #45a049;
+    }
+</style>
+</head>
+<body>
+
+<h2>Submit Review</h2>
+
+<button id="submitReviewBtn">Submit Review</button>
+
+<form id="reviewForm">
+    <label for="rating">Rating:</label>
+    <select id="rating" name="rating">
+        <option value="5">5 Stars</option>
+        <option value="4">4 Stars</option>
+        <option value="3">3 Stars</option>
+        <option value="2">2 Stars</option>
+        <option value="1">1 Star</option>
+    </select>
+
+    <label for="comment">Comment:</label>
+    <textarea id="comment" name="comment" rows="4" placeholder="Write your review here..."></textarea>
+
+    <button type="submit">Submit Review</button>
+</form>
+
+<script>
+    var submitReviewBtn = document.getElementById("submitReviewBtn");
+    var reviewForm = document.getElementById("reviewForm");
+
+    submitReviewBtn.addEventListener("click", function() {
+        if (reviewForm.style.display === "none") {
+            reviewForm.style.display = "block";
+        } else {
+            reviewForm.style.display = "none";
+        }
+    });
+
+    reviewForm.addEventListener("submit", function(event) {
+        event.preventDefault(); // Prevent the form from submitting
+
+        // Get the values from the form
+        var rating = document.getElementById("rating").value;
+        var comment = document.getElementById("comment").value;
+
+        // You can now use these values to do further processing, like sending them to a server via AJAX
+        
+        // For this example, let's just log the values to the console
+        console.log("Rating: " + rating);
+        console.log("Comment: " + comment);
+
+        // Optionally, you can reset the form after submission
+        // this.reset();
+    });
+</script>
+
+</body>
+</html>

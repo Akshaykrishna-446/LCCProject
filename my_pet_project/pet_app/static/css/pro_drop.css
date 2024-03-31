@@ -1,0 +1,31 @@
+/* Reset default margin and padding */
+
+
+
+
+.dropdown-content {
+    display: none !important;
+    position: absolute;
+    background-color: #f9f9f9 !important;
+    min-width: 140px !important;
+    height: auto !important;
+    
+    
+    box-shadow: 0px 4px 8px 0px #3f3f3f !important;
+    z-index: 1 !important;
+}
+
+.dropdown-content a {
+    display: block !important;
+    padding: 10px !important;
+    text-decoration: none !important;
+    color: #ff4531 !important;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd !important;
+}
+
+.profile:hover .dropdown-content {
+    display: block !important;
+}

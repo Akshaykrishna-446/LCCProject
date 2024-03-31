@@ -56,90 +56,24 @@
     <link href="{% static 'css/indexPageCss/pluggins.css' %}" rel="stylesheet" type="text/css" media="all" />
     <link href="{% static 'css/indexPageCss/style.css' %}" rel="stylesheet" type="text/css" media="all" />
 
+    <link rel="stylesheet" href="{% static 'css/pro_drop.css' %}">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-    <script>
-        document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
 
-        window.theme = {
-            strings: {
-                addToCart: "Add to Cart",
-                soldOut: "Sold Out",
-                unavailable: "Unavailable"
-            },
-            moneyFormat: "${{amount}}"
-        };
-    </script>
 
-    <script>
-        window.performance && window.performance.mark && window.performance.mark('shopify.content_for_header.start');
-    </script>
+
     <meta id="shopify-digital-wallet" name="shopify-digital-wallet" content="/6453756002/digital_wallets/dialog">
 
     <script async="async" src="{% static 'js/indexPage/preloader.js' %}"></script>
     <script async="async"
         src="https://shop.app/checkouts/internal/preloads.js?permanent-domain=shopper-theme.myshopify.com&locale=en-IN"
         crossorigin="anonymous"></script>
-    <script id="shopify-features" type="application/json">
-        {
-            "accessToken": "70bcf55e2e40423309d1d3e0a904c16e",
-            "betas": ["rich-media-storefront-analytics"],
-            "domain": "shopper-theme.myshopify.com",
-            "predictiveSearch": true,
-            "shopId": 6453756002,
-            "smart_payment_buttons_url": "https:\/\/shopper-theme.myshopify.com\/cdn\/shopifycloud\/payment-sheet\/assets\/latest\/spb.en.js",
-            "dynamic_checkout_cart_url": "https:\/\/shopper-theme.myshopify.com\/cdn\/shopifycloud\/payment-sheet\/assets\/latest\/dynamic-checkout-cart.en.js",
-            "locale": "en",
-            "flg4ff40b22": false
-        }
-    </script>
-    <script>
-        var Shopify = Shopify || {};
-        Shopify.shop = "shopper-theme.myshopify.com";
-        Shopify.locale = "en";
-        Shopify.currency = {
-            "active": "USD",
-            "rate": "1.0"
-        };
-        Shopify.country = "IN";
-        Shopify.theme = {
-            "name": "elite",
-            "id": 41454272610,
-            "theme_store_id": null,
-            "role": "main"
-        };
-        Shopify.theme.handle = "null";
-        Shopify.theme.style = {
-            "id": null,
-            "handle": null
-        };
-        Shopify.cdnHost = "shopper-theme.myshopify.com/cdn";
-        Shopify.routes = Shopify.routes || {};
-        Shopify.routes.root = "/";
-    </script>
-    <script type="module">!function (o) { (o.Shopify = o.Shopify || {}).modules = !0 }(window);</script>
 
-    <script>
-        (function () {
-            function asyncLoad() {
-                var urls = ["\/\/productreviews.shopifycdn.com\/embed\/loader.js?shop=shopper-theme.myshopify.com", "https:\/\/swymv3free-01.azureedge.net\/code\/swym-shopify.js?shop=shopper-theme.myshopify.com"];
-                for (var i = 0; i < urls.length; i++) {
-                    var s = document.createElement('script');
-                    s.type = 'text/javascript';
-                    s.async = true;
-                    s.src = urls[i];
-                    var x = document.getElementsByTagName('script')[0];
-                    x.parentNode.insertBefore(s, x);
-                }
-            };
-            if (window.attachEvent) {
-                window.attachEvent('onload', asyncLoad);
-            } else {
-                window.addEventListener('load', asyncLoad, false);
-            }
-        })();
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
 
 
 
@@ -162,12 +96,11 @@
 
 <body id="folded-vase-glasse" class="template-product">
 
-    <a class="in-page-link visually-hidden skip-link" href="#MainContent">Skip to content</a>
+
 
 
     <div class="preloader">
-        <img src="//shopper-theme.myshopify.com/cdn/shop/t/3/assets/preloader.gif?v=137961839149572988781540278302"
-            alt="preloader">
+        <img src="{% static 'images/indexPageImages/preloader.gif' %}" alt="preloader">
     </div>
 
     <div id="shopify-section-header" class="shopify-section">
@@ -176,91 +109,20 @@
                 max-width: 400px;
             }
         </style>
+
+        <!-- navigation -->
         <div data-section-id="header" data-section-type="header-section">
-            <!-- navigation -->
-            <nav class="navbar navbar-expand-lg navbar-light bg-light" id="navbar">
-                <a class="navbar-brand order-2 order-lg-1  site-header__logo-image" href="/">
-
-                    <img style="height: 50px;" src="{% static 'images/indexPageImages/logo_wide.png' %}" alt=""
-                        srcset="">
-
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse"
-                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse order-1 order-lg-2" id="navbarSupportedContent">
-                    <ul class="navbar-nav mx-auto">
+            {% block navbar %}
 
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="/">Home</a>
-                        </li>
+            {% include 'pet_app/navbar.html' %}
 
 
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'shop' %}">Shop</a>
-                        </li>
-
-
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="/pages/about-us">About</a>
-                        </li>
-
-
-
-
-
-
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="/pages/contact-us">Contact Us</a>
-                        </li>
-
-
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="">Wishlist <i class="bi bi-heart"></i></a>
-                        </li>
-
-
-
-
-
-                    </ul>
-                </div>
-                <div class="order-3 navbar-right-elements">
-                    <div class="search-cart">
-                        <!-- search -->
-                        <div class="search">
-                            <button id="searchOpen" class="search-btn"><svg xmlns="http://www.w3.org/2000/svg"
-                                    width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                                    <path
-                                        d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
-                                </svg></button>
-                            <div class="search-wrapper">
-                                <form action="/search" method="get">
-                                    <input class="search-box" id="Search" name="q" type="search"
-                                        placeholder="Search on our store">
-                                    <button class="search-icon" type="submit"><i class="bi bi-search"></i></button>
-                                </form>
-                            </div>
-                        </div>
-                        <!-- cart -->
-
-                        <div class="cart"><a href="{% url 'cart' %}">
-                                <button class="cart-btn"><i class="bi bi-cart"></i> CART </button></a>
-
-                        </div>
-                    </div>
-                </div>
-            </nav>
+            {% endblock %}
             <!-- /navigation -->
         </div>
+        <!-- /navigation -->
+
 
 
     </div>
@@ -274,19 +136,21 @@
             <nav class="bg-gray py-3">
                 <div class="container">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="/">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{% url 'shop' %}">shop</a></li>
                         <li class="breadcrumb-item active" aria-current="page">{{ product.product_name }}</li>
                     </ol>
                 </div>
             </nav>
+
             <!-- /breadcrumb -->
 
-            <div data-section-id="product" data-section-type="product" data-enable-history-state="true" itemscope>
+            <div>
 
 
                 <!-- product-single -->
                 <section class="section" style="padding: 50px 60px; ">
-                    <form action="" method="post">
+                    <form action="" method="post" enctype="multipart/form-data">
                         {% csrf_token %}
                         <div class="container">
                             <div class="row">
@@ -313,82 +177,65 @@
 
                                     <div class="d-flex justify-content-between">
                                         <h2>{{ product.product_name }}</h2>
-                                        <button class="btn wishlistStyle" name="wishlist" type="submit">add to wishlist</button>
+                                        {% if user.is_authenticated %}
+                                        <button class="btn wishlistStyle" name="wishlist" type="submit"><svg
+                                                xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" style="fill: #ff4534  ;">
+                                                <path
+                                                    d="M20.205 4.791a5.938 5.938 0 0 0-4.209-1.754A5.906 5.906 0 0 0 12 4.595a5.904 5.904 0 0 0-3.996-1.558 5.942 5.942 0 0 0-4.213 1.758c-2.353 2.363-2.352 6.059.002 8.412L12 21.414l8.207-8.207c2.354-2.353 2.355-6.049-.002-8.416z">
+                                                </path>
+                                            </svg></button>
+                                        {% else %}
+                                        <button disabled class="btn " name="wishlist" type="submit"><svg
+                                                xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" style="fill: #484747  ;">
+                                                <path
+                                                    d="M20.205 4.791a5.938 5.938 0 0 0-4.209-1.754A5.906 5.906 0 0 0 12 4.595a5.904 5.904 0 0 0-3.996-1.558 5.942 5.942 0 0 0-4.213 1.758c-2.353 2.363-2.352 6.059.002 8.412L12 21.414l8.207-8.207c2.354-2.353 2.355-6.049-.002-8.416z">
+                                                </path>
+                                            </svg></button>
+                                        {% endif %}
                                     </div>
-                                    <span data-available-text>
+                                    <span class=" text-primary" style="font-size: larger;">{{ average_rating }} <i
+                                            class="bi bi-star-fill " style="color: goldenrod;"></i> &nbsp;<span
+                                            class="text-muted" style="font-size: small;"> {{total_reviews}}
+                                            Reviews</span> </span>
 
+                                    <span>
+                                        {% if product.is_in_stock %}
                                         <p class="text-success mb-0">In Stock</p>
+                                        {% else %}
+                                        <p class="text-danger mb-0">Out of Stock</p>
+                                        {% endif %}
+
 
                                     </span>
 
                                     <!-- review -->
                                     <div id="shopify-product-reviews" data-id="1778502369378">
-                                        <style scoped>
-                                            .spr-icon {
-                                                color: #ffba00;
-                                            }
 
-                                            a.spr-icon:hover {
-                                                color: #664a00;
-                                            }
-
-                                            .spr-container {
-                                                padding: 0px;
-                                                border-color: #ececec;
-                                                border: none;
-                                            }
-
-                                            .spr-review,
-                                            .spr-form {
-                                                border-color: #ECECEC;
-                                            }
-                                        </style>
-
-                                        <div class="spr-container">
-                                            <div class="spr-header">
-                                                <h2 class="spr-header-title">Customer Reviews</h2>
-                                                <div class="spr-summary rte">
-
-                                                    <span class="spr-starrating spr-summary-starrating"
-                                                        aria-label="5.0 of 5 stars" role="img">
-                                                        <i class="spr-icon spr-icon-star" aria-hidden="true"></i><i
-                                                            class="spr-icon spr-icon-star" aria-hidden="true"></i><i
-                                                            class="spr-icon spr-icon-star" aria-hidden="true"></i><i
-                                                            class="spr-icon spr-icon-star" aria-hidden="true"></i><i
-                                                            class="spr-icon spr-icon-star" aria-hidden="true"></i>
-                                                    </span>
-                                                    <span class="spr-summary-caption">(
-                                                        3
-                                                        reviews )
-                                                    </span>
-                                                    <span class="spr-summary-actions">
-                                                        <a href='#' class='spr-summary-actions-newreview'
-                                                            onclick='SPR.toggleForm(1778502369378);return false'>Write
-                                                            a
-                                                            review</a>
-                                                    </span>
-                                                </div>
-                                            </div>
-
-                                            <div class="spr-content">
-                                                <div class='spr-form' id='form_1778502369378' style='display: none'>
-                                                </div>
-                                                <div class='spr-reviews' id='reviews_1778502369378'
-                                                    style='display: none'>
-                                                </div>
-                                            </div>
+                                        <div class="me-5" style="float: right; ">
+                                            <button type="button" class=" border-0 bg-light" data-bs-toggle="modal"
+                                                data-bs-target="#exampleModal1">
+                                                Add a review
+                                            </button>
 
                                         </div>
 
                                     </div>
                                     <h4 class="text-primary mt-2" data-price-wrapper>
                                         <span data-product-price>
-                                            <i class="bi bi-currency-rupee"></i> {{ product.product_price }}
+                                            <i class="bi bi-currency-rupee"></i> {{ final_price }}
                                         </span>
-
+                                        {% if product.offer_percentage > 0 %}
+                                        <span class="text-muted" style="margin-left: 10px; font-size: medium;">
+                                            <s>&#x20b9; {{ product.product_price }}</s>
+                                        </span>
+                                        {% endif %}
 
                                     </h4>
-
+                                    {% if product.offer_percentage > 0 %}
+                                    <h6 class="mb-4">You save: <span class="text-primary">{{yousave}} ( {{ product.offer_percentage }} %)</span></h6>
+                                    {% endif %}
                                     <div class="mb-4" style="max-width: 130px;">
                                         <input id="quantity" class="quantity  mb-3 mb-sm-0" type="text" value=""
                                             name="qty">
@@ -397,15 +244,17 @@
 
                                     </div>
                                     <div class="product-description mt-3 mb-3">
-                                        <h3 class="mb-2">Product Description</h3>
+                                        <h3 class="mb-2">Product Details</h3>
                                         <span>{{ product.product_desc }}</span>
                                     </div>
 
                                     <div class=" d-flex justify-content-around" style="width: 100%;">
 
+                                        {% if user.is_authenticated %}
 
+                                        {% if product.is_in_stock %}
                                         <button type="submit" name="addToCart" class="btn btn-primary mb-4"
-                                            style="width: 95%; margin-right: 2.5%;" data-add-to-cart>
+                                            style="width: 95%; margin-right: 2.5%;">
 
 
                                             Add to Cart
@@ -414,103 +263,184 @@
                                         </button>
 
 
+
                                         <button type="submit" name="buyNow" class="btn btn-primary mb-4"
-                                            style="width: 95%; margin-left: 2.5%;" data-add-to-cart>
-                                            <span data-add-to-cart-text>
+                                            style="width: 95%; margin-left: 2.5%;">
 
-                                                Buy Now
 
-                                            </span>
+                                            Buy Now
+
+                                        </button>
+                                        {% else %}
+
+                                        <button type="submit" disabled name="addToCart" class="btn btn-muted mb-4"
+                                            style="width: 95%; margin-right: 2.5%; border: 1px solid #ff4534;">
+
+
+                                            Add to Cart
+
+
                                         </button>
 
+
+
+                                        <button type="submit" disabled name="buyNow" class="btn btn-muted mb-4"
+                                            style="width: 95%; margin-left: 2.5%; border: 1px solid #ff4534;">
+
+
+                                            Buy Now
+
+                                        </button>
+
+                                        {% endif %}
+                                        {% endif %}
+                                    </div>
+                                    <h3 class="mb-2">Customer Reviews</h3>
+
+                                    <div class="product-description mt-3 mb-3">
+                                        {% if reviews.count <= 0 %} <div> <span class="text-primary">There's No Reviews
+                                                Yet</span></div>
+                                    {% else %}
+                                    {% for review in reviews %}
+                                    <div class="border border-muted" style="padding: 20px;">
+                                        <span class=" text-primary" style="font-size: medium;">{{ review.rating }} <i
+                                                class="bi bi-star-fill "
+                                                style="color: goldenrod; font-size: small;"></i> &nbsp;
+                                            &nbsp;&nbsp;<span class="text-primary" style="font-size: small;"> <span
+                                                    class="text-dark ">{{ review.user.user_full_name }}</span></span>
+                                        </span>
+
+                                        <div> <span>{{ review.content }} </span></div>
+                                        <div> <span class="text-muted">{{ review.created_at }} </span></div>
+                                    </div>
+                                    {% endfor %}
+                                    {% endif %}
+                                </div>
+                                <hr>
+                                <div class="modal fade" id="exampleModal1" tabindex="-1"
+                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header ">
+                                                <button type="button" style="border: none;" class="btn-close "
+                                                    data-bs-dismiss="modal" aria-label="Close"><i
+                                                        class="bi bi-x"></i></button>
+                                            </div>
+                                            <div class="modal-body">
+
+
+                                                <input type="hidden" name="product_id" value="{{ product.id }}">
+                                                <label style="color: black; margin-top: 0px;" for="content">Write Your
+                                                    Review
+                                                    :</label><br>
+                                                <textarea style="border: 1px solid #ff4531;" id="content" name="content"
+                                                    rows="4" cols="60"></textarea><br>
+                                                <label
+                                                    style="color: black; margin-top: 5px; margin-bottom: 5px; float: left;"
+                                                    for="rating">Rate out of 5 :</label>
+
+                                                <select
+                                                    style="color: goldenrod !important; max-width: 100%; border: 1px solid #ff4531; border-radius: 30px; padding-left: 15px; "
+                                                    id="rating" name="rating">
+
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                    <option value="5">5</option>
+                                                </select><br>
+                                                <div class="d-grid gap-2 mb-2">
+                                                    <input class=" btn-primary border-0 mt-3"
+                                                        style="width: 100%; border-radius: 30px; " type="submit"
+                                                        name="submitReview" value="Submit Review">
+
+                                                </div>
+
+
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <h5 class="mb-3 mt-5">Our Special Services</h5>
+
+                                <div class="row">
+
+                                    <!-- service item -->
+                                    <div class="col-lg-3 col-6 mb-4 mb-lg-0">
+                                        <div class="d-flex">
+
+                                            <i class="bi bi-truck text-primary icon-md mr-3"></i>
+
+
+
+                                            <div class="align-items-center">
+                                                <h6>Free Shipping</h6>
+                                            </div>
+
+                                        </div>
                                     </div>
 
+                                    <!-- service item -->
+                                    <div class="col-lg-3 col-6 mb-4 mb-lg-0">
+                                        <div class="d-flex">
+
+                                            <i class="bi-shield icon-md mr-3 text-primary"></i>
 
 
-                                    <hr>
-
-
-
-
-
-                                    <h5 class="mb-3 mt-5">Our Special Services</h5>
-
-                                    <div class="row">
-
-                                        <!-- service item -->
-                                        <div class="col-lg-3 col-6 mb-4 mb-lg-0">
-                                            <div class="d-flex">
-
-                                                <i class="bi bi-truck text-primary icon-md mr-3"></i>
-
-
-
-                                                <div class="align-items-center">
-                                                    <h6>Free Shipping</h6>
-                                                </div>
-
+                                            <div class="align-items-center">
+                                                <h6>Secure Payment</h6>
                                             </div>
+
                                         </div>
+                                    </div>
 
-                                        <!-- service item -->
-                                        <div class="col-lg-3 col-6 mb-4 mb-lg-0">
-                                            <div class="d-flex">
+                                    <!-- service item -->
+                                    <div class="col-lg-3 col-6 mb-4 mb-lg-0">
+                                        <div class="d-flex">
 
-                                                <i class="bi-shield icon-md mr-3 text-primary"></i>
+                                            <i class="bi bi-currency-rupee text-primary icon-md mr-3"></i>
 
 
-                                                <div class="align-items-center">
-                                                    <h6>Secure Payment</h6>
-                                                </div>
-
+                                            <div class="align-items-center">
+                                                <h6>Lowest Price</h6>
                                             </div>
+
                                         </div>
+                                    </div>
 
-                                        <!-- service item -->
-                                        <div class="col-lg-3 col-6 mb-4 mb-lg-0">
-                                            <div class="d-flex">
+                                    <!-- service item -->
+                                    <div class="col-lg-3 col-6 mb-4 mb-lg-0">
+                                        <div class="d-flex">
 
-                                                <i class="bi bi-currency-rupee text-primary icon-md mr-3"></i>
+                                            <i class="bi bi-repeat text-primary icon-md mr-3"></i>
 
 
-                                                <div class="align-items-center">
-                                                    <h6>Lowest Price</h6>
-                                                </div>
-
+                                            <div class="align-items-center">
+                                                <h6>30 Days Return</h6>
                                             </div>
+
                                         </div>
-
-                                        <!-- service item -->
-                                        <div class="col-lg-3 col-6 mb-4 mb-lg-0">
-                                            <div class="d-flex">
-
-                                                <i class="bi bi-repeat text-primary icon-md mr-3"></i>
-
-
-                                                <div class="align-items-center">
-                                                    <h6>30 Days Return</h6>
-                                                </div>
-
-                                            </div>
-                                        </div>
-
                                     </div>
 
                                 </div>
-                                <div class="col-lg-12">
-
-                                </div>
-
-
 
                             </div>
+                            <div class="col-lg-12">
+
+                            </div>
+
+
+
                         </div>
-                    </form>
-                </section>
-
-
-
             </div>
+            </form>
+            </section>
+
+
+
+        </div>
 
 
         </div>

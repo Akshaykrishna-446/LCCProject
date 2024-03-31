@@ -1,0 +1,38 @@
+{% extends 'pet_app/user_dashboard.html' %}
+{% load static %}
+{% block profile_details %}
+<div class="dashboard-wrapper user-dashboard">
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name </th>
+                    <th>House Name</th>
+                    <th>Local Address</th>
+                    <th>Country</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for d in datas %}
+                <tr>
+                    <td>{{d.name}}</td>
+                    <td>{{d.house}}</td> 
+                    <td>{{d.address}},{{d.zipcode}}<br>
+                        {{d.city}}
+                    </td>
+                    <td>{{d.country}}</td>
+                    {% comment %} <td>
+                        <div class="btn-group" role="group">
+                            
+                            <button type="button" class="btn btn-sm btn-outline-primary">
+                                <i class="bi bi-x"></i>
+                            </button>
+                        </div>
+                    </td> {% endcomment %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

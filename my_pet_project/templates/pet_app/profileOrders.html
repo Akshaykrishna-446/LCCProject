@@ -1,0 +1,94 @@
+{% extends 'pet_app/user_dashboard.html' %}
+{% load static %}
+{% load getstatus %}
+
+{% block profile_details %}
+<div class="dashboard-wrapper user-dashboard">
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Product Details</th>
+                    <th>Total Price</th>
+                    <th>Delivered To</th>
+                    <th>Ordered Date</th>
+                    <th>Status</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for data in datas %}
+
+                <tr>
+                    <td>{{data.id}}</td>
+
+                    <td>
+                        <div class="product-info" style="max-width: 50px; max-height: 50px;">
+                            <img class="img-fluid" src="/static/media/{{data.product_id.product_image}}"
+                                alt="product-img" />
+
+
+                        </div>
+                        <span class="text-primary">
+                            {{data.product_id.product_name}}&nbsp;&nbsp;<span
+                                class="text-success">({{data.order_qty}})</span></span><br>
+                        <!-- Button trigger modal -->
+
+
+                        <!-- Modal -->
+
+
+
+                    </td>
+
+                    <td>{{data.order_amount}}/-</td>
+
+                    <td>{{data.house}} (HOUSE) <br>
+                        {{data.address}},{{data.zipcode}} <br>
+
+                        {{data.city}},{{data.country}}<br>
+
+                    </td>
+                    <td>{{data.ordered_date}}</td>
+                    <td><span class="badge badge-primary">{% getstatus data.order_status %}</span></td>
+
+                    <td>
+
+                        <button type="button" class="btn btn-sm btn-outline-primary text-dark" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal">
+                            Cancel Order?
+                        </button>
+
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+
+                                    <div class="modal-body ms-5">
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="text-danger"> Are
+                                            You sure
+                                            cancelling this order? </span>
+                                        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        {{data.product_id.product_name}}
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-sm btn-primary"
+                                            data-bs-dismiss="modal">No</button>
+                                        <a href="{% url 'cancel_order' data.id %}"
+                                            class="btn btn-sm btn-outline-primary">Yes</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <!-- Modal -->
+
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

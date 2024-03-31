@@ -21,23 +21,17 @@
 
 
 
-    <meta property="og:site_name" content="Elite Shop">
-    <meta property="og:url" content="https://shopper-theme.myshopify.com/">
-    <meta property="og:title" content="Elite Shop">
-    <meta property="og:type" content="website">
-    <meta property="og:description" content="Elite Shop">
 
 
-    <meta name="twitter:site" content="@">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Elite Shop">
-    <meta name="twitter:description" content="Elite Shop">
+
+
 
 
     <link href="{% static 'css/indexPageCss/theme.scss.css' %}" rel="stylesheet" type="text/css" media="all" />
 
     <link rel="stylesheet" href="{% static 'css/indexPageCss/pluggins.css' %}" type="text/css" media="all">
     <link rel="stylesheet" href="{% static 'css/indexPageCss/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/pro_drop.css' %}">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
@@ -45,99 +39,51 @@
 
 
 
+
+    <script async="async" src="{% static 'js/indexPage/preloader.js' %}"></script>
+
+
+
+
+
+
+
+
+
+
+
+    <script src="{% static 'js/indexPage/load_feature.js' %}"
+        integrity="sha256-h4dvokWvGcvRSqiG7VnGqoonxF0k3NeoHPLSMjUGIz4=" data-source-attribution="shopify.loadfeatures"
+        defer="defer" crossorigin="anonymous"></script>
+
+
+
+    <script src="{% static 'js/indexPage/features.js' %}"
+        integrity="sha256-HAs5a9TQVLlKuuHrahvWuke+s1UlxXohfHeoYv8G2D8="
+        data-source-attribution="shopify.dynamic-checkout" defer="defer" crossorigin="anonymous"></script>
+    <script src="{% static 'js/indexPage/scripts.js' %}" id="sections-script" data-sections="slideshow"
+        defer="defer"></script>
+
 </head>
 
 <body id="elite-shop" class="template-index">
 
 
-
+    
 
 
 
     <!-- navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light" id="navbar">
-        <a class="navbar-brand order-2 order-lg-1  site-header__logo-image" href="/">
-
-            <img style="height: 50px;" src="{% static 'images/indexPageImages/logo_wide.png' %}" alt="" srcset="">
-
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse order-1 order-lg-2" id="navbarSupportedContent">
-            <ul class="navbar-nav mx-auto">
+    <div data-section-id="header" data-section-type="header-section">
+        {% block navbar %}
 
 
-                <li class="nav-item">
-                    <a class="nav-link" href="/">Home</a>
-                </li>
+        {% include 'pet_app/navbar.html' %}
 
 
-
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'shop' %}">Shop</a>
-                </li>
-
-
-
-                <li class="nav-item">
-                    <a class="nav-link" href="/pages/about-us">About</a>
-                </li>
-
-
-
-
-
-
-
-                <li class="nav-item">
-                    <a class="nav-link" href="/pages/contact-us">Contact Us</a>
-                </li>
-
-
-
-                <li class="nav-item">
-                    <a class="nav-link" href="#swym-wishlist">Wishlist <i class="bi bi-heart"></i></a>
-                </li>
-
-
-
-
-
-            </ul>
-        </div>
-        <div class="order-3 navbar-right-elements">
-            <div class="search-cart">
-                <!-- search -->
-                <div class="search">
-                    <button id="searchOpen" class="search-btn"><svg xmlns="http://www.w3.org/2000/svg" width="16"
-                            height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                            <path
-                                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
-                        </svg></button>
-                    <div class="search-wrapper">
-                        <form action="{% url 'shop' %}" method="post">
-                            {% csrf_token %}
-                            <input class="search-box" id="Search" name="name" type="search"
-                                placeholder="Search on our store">
-                            <button class="search-icon" name="search" type="submit"><i class="bi bi-search"></i></button>
-                        </form>
-                    </div>
-                </div>
-                <!-- cart -->
-                <div class="cart" id="cart">
-                    <button id="cartOpen" class="cart-btn"><svg xmlns="http://www.w3.org/2000/svg" width="16"
-                            height="16" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
-                            <path
-                                d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
-                        </svg><a href="{% url 'cart' %}"> CART</a> </button>
-
-                </div>
-            </div>
-        </div>
-    </nav>
+        {% endblock %}
+        <!-- /navigation -->
+    </div>
     <!-- /navigation -->
 
 
@@ -157,85 +103,89 @@
             <nav class="bg-gray py-3">
                 <div class="container">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="/">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
                         <li class="breadcrumb-item active" aria-current="page"><a href="">shop</a></li>
                     </ol>
                 </div>
             </nav>
             <section class="section" style="padding-top: 0%;">
                 <div class="container " style="padding-left: 70px;padding-right: 70px; ">
-                    
+
                     <div class="row">
-  
+
 
                         <!-- product -->
+                        <!--  _________________________________________________ -->
                         
-                            {% for d in results %}
-                            <div class="col-lg-3 col-sm-6 mb-4">
-                                <div class="product text-center">
-                                    <div class="product-thumb">
-                                        <div class="overflow-hidden position-relative">
-                                            <a href="{% url 'product_details' d.id %}">
+                        {% for d,product_price in zipped_price %}
+                        <div class="col-lg-3 col-sm-6 mb-4">
+                            <div class="product text-center  ">
+                                <div class="product-thumb">
+                                    <div class="overflow-hidden position-relative">
+                                        <a href="{% url 'product_details' d.id %}">
 
-                                                <img class="img-fluid w-100 mb-3 img-first"
-                                                    src="/static/media/{{d.product_image}}" alt="Pocket Denim Overshirt">
+                                            <img class="img-fluid w-100 mb-3 img-first" style="height: 200px;"
+                                                src="/static/media/{{d.product_image}}" alt="Pocket Denim Overshirt">
 
 
-                                            </a>
-                                            <div class="btn-cart">
-                                                
-                                                <form method="post" action="/cart/add" id="product_form_1778436636770"
-                                                    accept-charset="UTF-8" enctype="multipart/form-data" data-cart-submit>
-                                                    <input type="hidden" id="product" name="id" value="16676079730786">
+                                        </a>
+                                        <div class="btn-cart">
 
-                                                    <button type="submit" name="add"
-                                                        class="btn btn-primary btn-sm text-white" data-add-to-cart>
-                                                        <a href="{% url 'product_details' d.id %}">
+                                            <form method="post" action="/cart/add" id="product_form_1778436636770"
+                                                accept-charset="UTF-8" enctype="multipart/form-data" data-cart-submit>
+                                                <input type="hidden" id="product" name="id" value="16676079730786">
 
-                                                            More Details
+                                                <button type="submit" name="add"
+                                                    class="btn btn-primary btn-sm text-white" data-add-to-cart>
+                                                    <a href="{% url 'product_details' d.id %}">
 
-                                                        </a>
-                                                    </button>
-                                                </form>
-                                            </div>
+                                                        More Details
+
+                                                    </a>
+                                                </button>
+                                            </form>
                                         </div>
-
                                     </div>
-                                    <div class="product-info ">
-                                        <h3 class="h3 text-primary" style="font-weight: bolder;">{{d.product_name}}
-                                        </h3>
-                                        <h4 class="h5">description
-                                        </h4>
-                                        <span class="h5">${{d.product_price}}
-                                        </span>
-                                    </div>
-                                    <!-- product label badge -->
 
                                 </div>
+                                <div class="product-info ">
+                                    <h3 class="h3 text-primary" style="font-weight: bolder;">{{d.product_name}}
+                                    </h3>
+                                    <h4 class="h5">{{d.product_desc}}
+                                    </h4>
+
+                                    <span class="h5">&#x20b9;{{product_price}}</span> 
+                                        {% if d.offer_percentage > 0 %}
+                                        <span> <s> &#x20b9;{{d.product_price}} </s> </span>
+                                        <h6 class="mb-4">You save: <span class="text-primary">{{yousave}} ( {{ d.offer_percentage }} %)</span></h6>
+                                        {% endif %}
+                                </div>
+                                <!-- product label badge -->
+
                             </div>
-                            {% endfor %}
+                        </div>
+                        {% endfor %}
 
-                           
-
-
-
-                        <!--  _________________________________________________ -->
-                            {% for d in data %}
+                        {% if results.count <= 0 %} <div class="col-lg-3 col-sm-6 mb-4 text-primary text-center" > <h3>No Result Found</h3></div>
+                            {% else %}
+                            {% for d,product_price in zipped_data %}
                             <div class="col-lg-3 col-sm-6 mb-4">
-                                <div class="product text-center">
+                                <div class="product text-center  ">
                                     <div class="product-thumb">
                                         <div class="overflow-hidden position-relative">
                                             <a href="{% url 'product_details' d.id %}">
 
-                                                <img class="img-fluid w-100 mb-3 img-first"
-                                                    src="/static/media/{{d.product_image}}" alt="Pocket Denim Overshirt">
+                                                <img class="img-fluid w-100 mb-3 img-first" style="height: 200px;"
+                                                    src="/static/media/{{d.product_image}}"
+                                                    alt="Pocket Denim Overshirt">
 
 
                                             </a>
                                             <div class="btn-cart">
-                                                
+
                                                 <form method="post" action="/cart/add" id="product_form_1778436636770"
-                                                    accept-charset="UTF-8" enctype="multipart/form-data" data-cart-submit>
+                                                    accept-charset="UTF-8" enctype="multipart/form-data"
+                                                    data-cart-submit>
                                                     <input type="hidden" id="product" name="id" value="16676079730786">
 
                                                     <button type="submit" name="add"
@@ -256,24 +206,65 @@
                                         </h3>
                                         <h4 class="h5">{{d.product_desc}}
                                         </h4>
-                                        <span class="h5">${{d.product_price}}
-                                        </span>
+                                        <span class="h5">&#x20b9;{{product_price}}</span> 
+                                        {% if d.offer_percentage > 0 %}
+                                        <span> <s> &#x20b9;{{d.product_price}} </s> </span>
+                                        <h6 class="mb-4">You save: <span class="text-primary">{{yousave}} ( {{ d.offer_percentage }} %)</span></h6>
+                                        {% endif %}
+                                        
                                     </div>
                                     <!-- product label badge -->
 
                                 </div>
                             </div>
                             {% endfor %}
-                        
-                        <!-- /end of product -->
+                            {% endif %}
+                            <!-- /end of product -->
 
-                        
+
 
 
 
                     </div>
+
+                    <div>
+                        <nav aria-label="Page navigation example" style="border: none;">
+                            <ul class="pagination" style="border: none;">
+
+                                <li class="page-item " style="border: none;">
+                                    {% if data.has_previous %}
+                                    <a class="page-link text-primary" href="?page={{ data.previous_page_number }}"
+                                        aria-label="Next">
+                                        <span style="border: none;">&laquo;</span>
+                                    </a>
+                                    {% endif %}
+
+                                </li>
+
+                                {% for i in data.paginator.page_range %}
+                                <a class="page-link text-primary" href="?page={{i}}" style="border: none;">
+                                    <span style="border: none;">{{i}}</span>
+                                </a>
+
+                                {% endfor %}
+
+                                <li class="page-item " style="border: none;">
+                                    {% if data.has_next %}
+                                    <a class="page-link text-primary" href="?page={{ data.next_page_number }}"
+                                        aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                    {% endif %}
+
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+
+
                 </div>
             </section>
+
 
         </div>
 
@@ -284,16 +275,9 @@
 
 
 
-
-
-
-
-<script>
-    $('#searchOpen').on('click', function() {
-        $('.search-wrapper').toggleClass('open');
-        $('.search-btn').toggleClass('search-close');
-    });
-</script>
+    <script src="{% static 'js/indexPage/vendor.js' %}" type="text/javascript"></script>
+    <script src="{% static 'js/indexPage/theme.js' %}" type="text/javascript"></script>
+    <script src="{% static 'js/indexPage/options_selection.js' %}" type="text/javascript"></script>
 </body>
 
 </html>

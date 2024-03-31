@@ -1,6 +1,8 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,82 +13,40 @@
 
     <link rel="stylesheet" href="{% static 'css/indexPageCss/pluggins.css' %}" type="text/css" media="all">
     <link rel="stylesheet" href="{% static 'css/indexPageCss/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/pro_drop.css' %}">
 
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="{% static 'js/indexPage/load_feature.js' %}"
+    integrity="sha256-h4dvokWvGcvRSqiG7VnGqoonxF0k3NeoHPLSMjUGIz4=" data-source-attribution="shopify.loadfeatures"
+    defer="defer" crossorigin="anonymous"></script>
+
+    <script src="{% static 'js/indexPage/features.js' %}"
+        integrity="sha256-HAs5a9TQVLlKuuHrahvWuke+s1UlxXohfHeoYv8G2D8="
+        data-source-attribution="shopify.dynamic-checkout" defer="defer" crossorigin="anonymous"></script>
+    <script src="{% static 'js/indexPage/scripts.js' %}" id="sections-script" data-sections="slideshow"
+        defer="defer"></script>
 </head>
+
+
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light" id="navbar">
-        <a class="navbar-brand order-2 order-lg-1  site-header__logo-image" href="/">
-    
-            <img style="height: 50px;" src="{% static 'images/indexPageImages/logo_wide.png' %}" alt="" srcset="">
-    
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-    
-        <div class="collapse navbar-collapse order-1 order-lg-2" id="navbarSupportedContent">
-            <ul class="navbar-nav mx-auto">
-    
-    
-                <li class="nav-item">
-                    <a class="nav-link" href="/">Home</a>
-                </li>
-    
-    
-    
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'shop' %}">Shop</a>
-                </li>
-    
-    
-    
-                <li class="nav-item">
-                    <a class="nav-link" href="/pages/about-us">About</a>
-                </li>
-    
-    
-    
-    
-    
-    
-    
-                <li class="nav-item">
-                    <a class="nav-link" href="/pages/contact-us">Contact Us</a>
-                </li>
-    
-    
-    
-                <li class="nav-item">
-                    <a class="nav-link" href="#swym-wishlist">Wishlist <i class="bi bi-heart"></i></a>
-                </li>
-    
-    
-    
-    
-    
-            </ul>
-        </div>
-        <div class="order-3 navbar-right-elements">
-            <div class="search-cart">
-                <!-- search -->
-                <ul class="navbar-nav mx-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="#swym-wishlist">Sign Out </a>
-                </li>
-                <!-- cart -->
-            </ul>
-            </div>
-        </div>
-    </nav>
+    <div data-section-id="header" data-section-type="header-section">
+        {% block navbar %}
+
+
+        {% include 'pet_app/navbar.html' %}
+
+
+        {% endblock %}
+        <!-- /navigation -->
+    </div>
     <div class="main-wrapper">
 
         <!-- breadcrumb -->
         <nav class="bg-gray py-3">
             <div class="container">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Cart</li>
                 </ol>
             </div>
@@ -99,71 +59,95 @@
                     <div class="row">
                         <div class="col-md-10 mx-auto">
                             <div class="block">
-                                {% if cart_products.count <= 0 %}
-                                <h3>No Items in your cart yet</h3>  
-                                {% else %}
-                                <div class="product-list">
-                                    <form  method="post">
-                                        {% csrf_token %}
-                                        <div class="table-responsive">
-                                            <table class="table cart-table">
-                                                <thead>
-                                                    <tr>
-                                                        <th></th>
-                                                        <th>Product Image</th>
-                                                        <th>Product Name</th>
-                                                        <th>Price</th>
-                                                        <th>Quantity</th>
-                                                        <th>Sub Total</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    {% for d in cart_products %}
-                                                    <tr>
-                                                        <td>
-                                                            <a class="product-remove" href="{% url 'cartremove' d.id %}">&times;</a>
-                                                        </td>
-                                                        <td>
-                                                            <div class="product-info " style="max-width: 50px; max-height: 50px;">
-                                                                <img class="img-fluid" src="/static/media/{{d.product_id.product_image}}"
-                                                                    alt="product-img" />
+                                {% if data.count <= 0 %} <h3 class="text-primary">No Items in your cart yet</h3>
+                                    {% else %}
+                                    <div class="product-list">
+                                        <form method="post">
+                                            {% csrf_token %}
+                                            <div class="table-responsive">
+                                                <table class="table cart-table">
+                                                    <thead>
+                                                        <tr >
+                                                            <th></th>
+                                                            <th>Product Image</th>
+                                                            <th>Product Name</th>
+                                                            <th>Price</th>
+                                                            <th>Quantity</th>
+                                                            <th>Sub Total</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        
+                                                        {% for d, product_price in zipped_price %}
+                                                        <tr>
+                                                            <td>
+                                                                <a class="product-remove"
+                                                                    href="{% url 'cartremove' d.id %}">&times;</a>
+
+                                                            </td>
+                                                            <td>
+                                                                <div class="product-info "
+                                                                    style="max-width: 50px; max-height: 50px;">
+                                                                    <img class="img-fluid"
+                                                                        src="/static/media/{{d.product_id.product_image}}"
+                                                                        alt="product-img" />
+
+                                                                </div>  
+                                                            </td>
+                                                            <td><a href="{% url 'product_details' d.product_id.id %}">{{d.product_id.product_name}}</a></td>
+                                                            <td>{{product_price}}</td>
+                                                            <td>
                                                                 
-                                                            </div>
-                                                        </td>
-                                                        <td><a href="">{{d.product_id.product_name}}</a></td>
-                                                        <td>{{d.product_id.product_price}}</td>
-                                                        <td>{{d.order_qty}}</td>
-                                                        <td>{{d.cart_amount}}</td>
-                                                    </tr>
-                                                    {% endfor %}
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                        <hr>
-                                        
-                                        <hr>
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <ul class="list-unstyled text-right">
-                                                    <li>Sub Total <span class="d-inline-block w-100px">$800.00</span>
-                                                    </li>
-                                                    <li>Shipping Cost <span class="d-inline-block w-100px">40</span></li>
-                                                    <li>Grand Total <span class="d-inline-block w-100px">$10.00</span>
-                                                    </li>
-                                                </ul>
+                                                                    <input
+                                                                        style="width: 33px; border: 1px solid #ff4531; padding-left: 10px; " min="1" value="{{d.order_qty}}"
+                                                                        name="qty" type="tel">
+                                                                        <div >
+                                                                            <a href="{% url 'increaseItem' d.id %}" style="background-color: #ff4531;  color: white;"><i class="bi bi-plus"></i></a>
+                                                                            <a href="{% url 'decreaseItem' d.id %}" style="background-color: #ff4531;  color: white;"><i class="bi bi-dash"></i></a>
+                                                                        </div>
+                                                                
+                                                            </td>
+                                                            <td>{{d.cart_amount}}</td>
+                                                        </tr>
+                                                        {% endfor %}
+                                                    </tbody>
+                                                </table>
                                             </div>
-                                        </div>
-                                        <hr>
-                                        <a href="{% url 'checkout' %}" class="btn btn-primary float-right">Checkout</a>
-                                    </form>
-                                </div>
-                                {% endif %}
+                                            <hr>
+
+                                            <hr>
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <ul class="list-unstyled text-right">
+                                                        <li>Sub Total <span class="d-inline-block w-100px">{{total}}
+
+                                                            </span>
+                                                        </li>
+                                                        <li>Shipping Cost <span
+                                                                class="d-inline-block w-100px text-primary">
+                                                                {% if total <= 500 %} 100 {% else %} Free Shipping {% endif %} </span>
+                                                        </li>
+                                                        <li>Grand Total <span class="d-inline-block w-100px">
+                                                            {{ grand_total }}</span>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <hr>
+                                            <a href="{% url 'checkoutFromCart' %}"
+                                                class="btn btn-primary float-right">Checkout</a>
+                                        </form>
+                                    </div>
+                                    {% endif %}
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        
+        <script src="{% static 'js/indexPage/vendor.js' %}" type="text/javascript"></script>
+        <script src="{% static 'js/indexPage/theme.js' %}" type="text/javascript"></script>
+        <script src="{% static 'js/indexPage/options_selection.js' %}" type="text/javascript"></script>
 </body>
+
 </html>
